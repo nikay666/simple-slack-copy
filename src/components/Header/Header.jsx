@@ -1,30 +1,8 @@
-import { Avatar } from '@material-ui/core'
 import React from 'react'
-import styled from 'styled-components'
-
-
-const HeaderContainer = styled.div`
-    display: flex;
-
-`
-
-const HeaderLeft = styled.div`
-    flex: 0.3;
-    display: flex;
-    align-items: center;
-`
-
-const HeaderAvatar = styled(Avatar)`
-
-`
-
-const HeaderCenter = styled.div`
-
-`
-
-const HeaderRight = styled.div`
-
-`
+import ScheduleIcon from '@material-ui/icons/Schedule';
+import SearchIcon from '@material-ui/icons/Search';
+import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
+import { HeaderAvatar, HeaderContainer, HeaderLeft, HeaderRight, HeaderSearch } from './header.style';
 
 export function Header() {
     return (
@@ -35,14 +13,16 @@ export function Header() {
                 //TODO: add onclick
                />
 
+               <ScheduleIcon/>
             </HeaderLeft>
 
-            <HeaderCenter>
-
-            </HeaderCenter>
+            <HeaderSearch>
+                <SearchIcon/>
+                <input type="search" placeholder="Search" id="search"/>
+            </HeaderSearch>
 
             <HeaderRight>
-
+                <HelpOutlineIcon/>
             </HeaderRight>
         </HeaderContainer>
     )
