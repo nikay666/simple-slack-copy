@@ -1,9 +1,19 @@
 import React from 'react'
 import { SidebarOptionContainer } from './sidebar.style'
 
-export const SidebarOption = ({Icon, title}) => {
+export const SidebarOption = ({Icon, title, addChannelOption}) => {
+
+    const addChannel = () => {
+        
+    } 
+    
+    const selectChannel = () => {
+
+    }
     return (
-        <SidebarOptionContainer>
+        <SidebarOptionContainer
+            onClick={addChannelOption ? addChannel : selectChannel}
+        >
             {Icon &&  <Icon 
                 fontSize='small'
                 className='m10'
