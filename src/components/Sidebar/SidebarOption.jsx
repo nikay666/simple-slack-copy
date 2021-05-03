@@ -4,11 +4,9 @@ import { SidebarOptionContainer } from './sidebar.style'
 export const SidebarOption = ({Icon, title, addChannelOption}) => {
 
     const addChannel = () => {
-        
     } 
     
     const selectChannel = () => {
-
     }
     return (
         <SidebarOptionContainer
@@ -28,3 +26,5 @@ export const SidebarOption = ({Icon, title, addChannelOption}) => {
         </SidebarOptionContainer>
     )
 }
+
+ 
