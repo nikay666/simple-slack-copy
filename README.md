@@ -5,4 +5,5 @@ Technologies:
     * React.js
     * Redux 
     * Styled components 
-    * Firebase Hooks
+    * Firebase 
+    * react-firebase-hooks

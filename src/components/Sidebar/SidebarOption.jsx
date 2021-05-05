@@ -1,8 +1,8 @@
 import React from 'react'
 import { db } from '../../firebase'
-import { SidebarOptionContainer } from './sidebar.style'
+import { SidebarOptionChannel, SidebarOptionContainer } from './sidebar.style'
 
-export const SidebarOption = ({Icon, title, addChannelOption}) => {
+export const SidebarOption = ({Icon, title, addChannelOption, id}) => {
 
     const addChannel = () => {
         const channelName = prompt('Please enter the channel name')
@@ -15,6 +15,7 @@ export const SidebarOption = ({Icon, title, addChannelOption}) => {
     } 
     
     const selectChannel = () => {
+         
     }
     return (
         <SidebarOptionContainer
@@ -27,9 +28,9 @@ export const SidebarOption = ({Icon, title, addChannelOption}) => {
             { Icon ?  (
                 <h3>{title}</h3>
             ) : (
-                <SidebarOptionContainer>
+                <SidebarOptionChannel>
                     <span>#</span>{title}
-                </SidebarOptionContainer>
+                </SidebarOptionChannel>
             )}
         </SidebarOptionContainer>
     )
