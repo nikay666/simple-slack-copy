@@ -1,5 +1,5 @@
 import { Button } from '@material-ui/core'
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import { db } from '../../firebase'
 import { ChatInputContainer } from './chat.style'
 import firebase from 'firebase'
@@ -36,7 +36,7 @@ export const ChatInput = ({channelName, channelId}) => {
                     onChange={e => setInput(e.target.value)}
                     value={input}
                     type="text"
-                    placeholder={`Message #ROOM`}
+                    placeholder={`Message #${channelName}`}
                 />
                 <Button 
                     type='submit' 
