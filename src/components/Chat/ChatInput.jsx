@@ -5,10 +5,8 @@ import { ChatInputContainer } from './chat.style'
 import firebase from 'firebase'
 
 
-export const ChatInput = ({channelName, channelId}) => {
+export const ChatInput = ({channelName, channelId, chatRef}) => {
     const [input, setInput] = useState('')
-
-    // console.log(channelId)
 
     const sendMessage = (e) => {
         e.preventDefault()
@@ -24,6 +22,10 @@ export const ChatInput = ({channelName, channelId}) => {
             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
             user: 'Memi Nika',
             userImage: 'https://www.itl.cat/pngfile/big/64-647505_fate-kaleid-liner-prisma-illya-2wei-herz-fate.jpg'
+        })
+
+        chatRef.current.scrollIntoView({
+            behavior: 'smooth'
         })
 
         setInput('')
