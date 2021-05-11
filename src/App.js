@@ -15,8 +15,6 @@ const AppBody = styled.div`
 
 `
 
-
-
 function App() {
   const [user, loading] = useAuthState(auth)
 

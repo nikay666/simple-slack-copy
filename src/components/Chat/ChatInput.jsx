@@ -1,12 +1,14 @@
 import { Button } from '@material-ui/core'
 import React, { useState } from 'react'
-import { db } from '../../firebase'
+import { auth, db } from '../../firebase'
 import { ChatInputContainer } from './chat.style'
 import firebase from 'firebase'
+import { useAuthState } from 'react-firebase-hooks/auth'
 
 
 export const ChatInput = ({channelName, channelId, chatRef}) => {
     const [input, setInput] = useState('')
+    const [user] = useAuthState(auth)
 
     const sendMessage = (e) => {
         e.preventDefault()
@@ -20,8 +22,8 @@ export const ChatInput = ({channelName, channelId, chatRef}) => {
         db.collection('rooms').doc(channelId).collection('message').add({
             message: input,
             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-            user: 'Memi Nika',
-            userImage: 'https://www.itl.cat/pngfile/big/64-647505_fate-kaleid-liner-prisma-illya-2wei-herz-fate.jpg'
+            user: user.displayName,
+            userImage: user.photoURL
         })
 
         chatRef.current.scrollIntoView({
