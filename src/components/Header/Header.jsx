@@ -9,8 +9,6 @@ import { auth } from '../../firebase';
 export function Header() {
     const [user] = useAuthState(auth)
 
-    console.log('user', user)
-
     return (
         <HeaderContainer>
             <HeaderLeft>
