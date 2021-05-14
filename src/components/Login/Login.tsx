@@ -4,9 +4,9 @@ import { auth, provider } from '../../firebase'
 import { LoginContainer, LoginInnerContaier } from './login.style'
 
 
-export const Login = () => {
+export const Login: React.FC = () => {
 
-    const singIn = (e) =>  {
+    const singIn = (e: React.MouseEvent<HTMLButtonElement>): void =>  {
         e.preventDefault()
         auth.signInWithPopup(provider).catch(error => alert(error.message))
     }
@@ -28,3 +28,4 @@ export const Login = () => {
         </LoginContainer>
     )
 }
+

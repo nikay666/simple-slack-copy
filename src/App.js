@@ -7,7 +7,7 @@ import { Header } from './components/Header/Header';
 import { Sidebar } from './components/Sidebar/Sidebar';
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { auth } from './firebase';
-import { Login } from './components/Login/Login';
+import { Login } from './components/Login/Login.tsx';
 import Spinner from 'react-spinkit'
 
 const AppBody = styled.div`
