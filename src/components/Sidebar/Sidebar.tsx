@@ -17,9 +17,12 @@ import { useCollection } from 'react-firebase-hooks/firestore';
 import { auth, db } from '../../firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
+
+
 export const Sidebar = () => {
-    const [channels]  = useCollection(db.collection('rooms'))
+    const [channels] = useCollection(db.collection('rooms'))
     const [user] = useAuthState(auth)
+    
     return (
         <SidebarContainer>
             <SidebarHeader>
@@ -27,7 +30,7 @@ export const Sidebar = () => {
                     <h2>Memi Nika</h2>
                     <h3>
                         <FiberManualRecordIcon />
-                        {user.displayName}
+                        {user?.displayName}
                     </h3>
                 </SidebarInfo>
                 <CreateIcon/>
