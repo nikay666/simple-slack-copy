@@ -4,32 +4,25 @@ import { auth, db } from '../../firebase'
 import { ChatInputContainer } from './chat.style'
 import firebase from 'firebase'
 import { useAuthState } from 'react-firebase-hooks/auth'
+import { ChatInputProps } from './ChatTypes'
 
 
-export const ChatInput = ({channelName, channelId, chatRef}) => {
+export const ChatInput = ({channelName, channelId, scrollIntoView}: ChatInputProps) => {
     const [input, setInput] = useState('')
     const [user] = useAuthState(auth)
 
-    const sendMessage = (e) => {
+    const sendMessage = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
-
-        console.log(channelId)
-
-        if(!channelId){
-            return false
-        }
+        if(!channelId) return false
          
         db.collection('rooms').doc(channelId).collection('message').add({
             message: input,
             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-            user: user.displayName,
-            userImage: user.photoURL
+            user: user?.displayName,
+            userImage: user?.photoURL
         })
 
-        chatRef.current.scrollIntoView({
-            behavior: 'smooth'
-        })
-
+        scrollIntoView()
         setInput('')
     }
 

@@ -6,7 +6,7 @@ import { SidebarOptionChannel, SidebarOptionContainer } from './sidebar.style'
 import { SidebarOptionProps } from './SidebarTypes'
 
 
-export const SidebarOption = ({Icon, title, addChannelOption, id}: SidebarOptionProps) => {
+export const SidebarOption = ({Icon, title, addChannelOption=false, id}: SidebarOptionProps) => {
     const dispatch = useDispatch()
 
     const addChannel = (): void => {
@@ -19,14 +19,9 @@ export const SidebarOption = ({Icon, title, addChannelOption, id}: SidebarOption
         id && dispatch(enterRoom({ roomId: id }))
     }
 
-    const handleChannelAction = (): () => void => {
-        return addChannelOption ? addChannel : selectChannel
-    }
-
-
     return (
         <SidebarOptionContainer
-            onClick={handleChannelAction}
+            onClick={ addChannelOption ? addChannel : selectChannel}
         >
             {Icon &&  <Icon 
                 fontSize='small'

@@ -12,24 +12,23 @@ import { Message } from '../Message/Message';
 
 
 export const Chat = () => {
-    const chatRef = useRef(null)
+    const chatRef = useRef<HTMLDivElement>(null)
     const roomId = useSelector(selectRoomId)
-    const [roomDetails] = useDocument(
-        roomId && db.collection('rooms').doc(roomId)
-    )
+    const [roomDetails] = useDocument( roomId && db.collection('rooms').doc(roomId) )
     const [roomMessages, loading] = useCollection(
-        roomId && 
-        db
+        roomId && db
             .collection('rooms')
             .doc(roomId)
             .collection('message')
             .orderBy('timestamp', 'asc')
     )
 
+    const scrollIntoView = (): void => {
+        chatRef?.current?.scrollIntoView({ behavior: 'smooth' })
+    }
+
     useEffect(() => {
-        chatRef?.current?.scrollIntoView({
-            behavior: 'smooth'
-        })
+        scrollIntoView()
     }, [roomId, loading])
 
     return (
@@ -39,7 +38,7 @@ export const Chat = () => {
                 <ChatHeader>
                     <ChatHeaderLeft>
                         <h4>
-                            <strong>#{roomDetails?.data().name}</strong>
+                            <strong>#{roomDetails?.data()?.name}</strong>
                             <StarBorderOutlinedIcon/>
                         </h4>
                     </ChatHeaderLeft>
@@ -51,7 +50,6 @@ export const Chat = () => {
                 <ChatMessages>
                     {roomMessages?.docs.map(doc => {
                             const { message, timestamp, user, userImage } = doc.data()
-                        console.log(userImage)
                             return ( 
                                 <Message
                                     key={doc.id}
@@ -62,13 +60,14 @@ export const Chat = () => {
                                 />
                             )
                     })}
-                    <ChatBottom  ref={chatRef} />
+                    <ChatBottom ref={chatRef} />
                 </ChatMessages>
 
                 <ChatInput
-                    chatRef={chatRef}
+                    // chatRef={chatRef}
+                    scrollIntoView={scrollIntoView}
                     channelId={roomId}
-                    channelName={roomDetails?.data().name}
+                    channelName={roomDetails?.data()?.name}
                 />
             </>
             )}
